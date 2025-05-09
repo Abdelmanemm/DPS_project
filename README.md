@@ -1,4 +1,4 @@
-# DPS_project
+# DSP_project
 # 🔧 Project Tasks Overview
 
 This project extends our image processing system by reimplementing all filters from scratch using DSP techniques and NumPy. It also adds simple audio filtering. The work is divided into structured phases with assigned team members and deliverables.
