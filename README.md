@@ -7,13 +7,8 @@ This project extends our image processing system by reimplementing all filters f
 
 ## 💼 Phase 1: Planning & Setup
 
-### 📄 Project Refactoring Plan
-**👤 Assigned to:** Khail  
-- **Objective:** Analyze existing code structure, remove YOLO dependency, and propose modular improvements.  
-- **Deliverables:** `refactor_plan.md`
-
 ### 📚 Research Image Filtering with DSP
-**👤 Assigned to:** Salma & Radwa  
+**👤 Assigned to:** Salma & Radwa 
 - **Objective:** Study DSP implementations for grayscale, Gaussian blur, edge detection, etc.  
 - **Deliverables:** `filter_math_notes.pdf` (must include equations + steps)
 
