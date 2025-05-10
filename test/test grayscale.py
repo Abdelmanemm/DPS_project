@@ -24,6 +24,9 @@ def test_uploaded_image_grayscale_conversion(image_path: str):
     assert len(gray_image.shape) == 2, "Output image is not 2D grayscale."
 
     print("✅ Uploaded image was successfully converted to grayscale.")
+    plt.imshow(gray_image, cmap='gray') 
+    plt.title('Grayscale Image')
+    plt.show()
 
 if __name__ == "__main__":
     # Replace 'your_image.jpg' with the actual image file path
