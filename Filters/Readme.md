@@ -14,13 +14,9 @@ This folder contains all the custom image filter implementations written from sc
   - Input: `numpy.ndarray` (RGB or grayscale image).
   - Output: `numpy.ndarray` (processed image).
 
- ## 🧑‍💻 Coding Standards
-
-All code must follow the **[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)**.
-
-### Key Requirements:
+ ## 🧑‍💻 Coding Standard
 - Use clear and descriptive function and variable names.
-- Add **docstrings** for all functions using [Google-style format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html):
+- Follow this code example as a reference
   ```python
   def grayscale(image: np.ndarray) -> np.ndarray:
       """Convert an RGB image to grayscale.
