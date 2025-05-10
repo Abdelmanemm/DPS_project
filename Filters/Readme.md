@@ -16,6 +16,7 @@ This folder contains all the custom image filter implementations written from sc
 
  ## 🧑‍💻 Coding Standard
 - Use clear and descriptive function and variable names.
+- Make sure your code is clean 
 - Follow this code example as a reference
   ```python
   def grayscale(image: np.ndarray) -> np.ndarray:
