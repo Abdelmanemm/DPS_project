@@ -1,30 +1,37 @@
 import numpy as np
+from grayscale import grayscale
 def sobel_edge_detection(image: np.ndarray) -> np.ndarray:
-    
-    Gx = np.array([
-        [-1, 0, 1],
-        [-2, 0, 2],
-        [-1, 0, 1]
-    ])
-    Gy = np.array([
-        [-1, -2, -1],
-        [ 0,  0,  0],
-        [ 1,  2,  1]
-    ])
+    """
+    Applies Sobel edge detection to a grayscale image.
 
+    Args:
+        image (np.ndarray): 2D grayscale image.
+
+    Returns:
+        np.ndarray: Edge-detected image as 8-bit grayscale.
+    """
+    if  image.ndim !=2:
+        image = grayscale(image)
+
+    Gx = np.array([[-1, 0, 1],
+                   [-2, 0, 2],
+                   [-1, 0, 1]])
+    Gy = np.array([[-1, -2, -1],
+                   [ 0,  0,  0],
+                   [ 1,  2,  1]])
+
+    image = image.astype(np.float32)
     height, width = image.shape
+    padded = np.pad(image, ((1, 1), (1, 1)), mode='reflect')  # better than 'constant'
 
-    edge_image = np.zeros_like(image, dtype=np.float32)
+    edges = np.zeros((height, width), dtype=np.float32)
 
-    padded_image = np.pad(image, ((1, 1), (1, 1)), mode='constant')
+    for i in range(height):
+        for j in range(width):
+            region = padded[i:i+3, j:j+3]
+            gx = np.sum(region * Gx)
+            gy = np.sum(region * Gy)
+            edges[i, j] = np.sqrt(gx**2 + gy**2)
 
-    for i in range(1, height + 1):
-        for j in range(1, width + 1):
-            region = padded_image[i-1:i+2, j-1:j+2] 
-            gx = np.sum(region * Gx)  
-            gy = np.sum(region * Gy)  
-            edge_magnitude = np.sqrt(gx**2 + gy**2)
-            edge_image[i-1, j-1] = edge_magnitude
-
-    edge_image = (edge_image / edge_image.max()) * 255
-    return edge_image.astype(np.uint8)
+    edges = np.clip((edges / edges.max()) * 255, 0, 255)
+    return edges.astype(np.uint8)
