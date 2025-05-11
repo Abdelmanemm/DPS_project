@@ -1,6 +1,6 @@
-#Nearest Neighbor
 import numpy as np
 
+# Nearest Neighbor
 def resize_nearest_neighbor(image: np.ndarray, new_height: int, new_width: int) -> np.ndarray:
     """
     Resize image using nearest neighbor interpolation.
@@ -32,24 +32,8 @@ def resize_nearest_neighbor(image: np.ndarray, new_height: int, new_width: int) 
 
     return resized.squeeze()
 
-#Testing Nearest Neighbor
-if __name__ == "__main__":
-    import matplotlib.pyplot as plt
 
-    # Create a dummy 4x4 RGB image
-    dummy_img = np.random.randint(0, 255, (4, 4, 3), dtype=np.uint8)
-    resized_img = resize_nearest_neighbor(dummy_img, 8, 8)
-
-    plt.subplot(1, 2, 1)
-    plt.title("Original")
-    plt.imshow(dummy_img)
-
-    plt.subplot(1, 2, 2)
-    plt.title("Resized (NN)")
-    plt.imshow(resized_img)
-    plt.show()
-    
-    #Bilinear
+# Bilinear
 def resize_bilinear(image: np.ndarray, new_height: int, new_width: int) -> np.ndarray:
     """
     Resize image using bilinear interpolation.
@@ -89,12 +73,6 @@ def resize_bilinear(image: np.ndarray, new_height: int, new_width: int) -> np.nd
 
     return np.clip(resized, 0, 255).astype(np.uint8).squeeze()
 
-# Test Bilinear Resize
-resized_bilinear = resize_bilinear(dummy_img, 8, 8)
-plt.figure()
-plt.title("Resized (Bilinear)")
-plt.imshow(resized_bilinear)
-plt.show()
 
 
 
