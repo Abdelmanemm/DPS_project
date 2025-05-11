@@ -9,6 +9,7 @@ from resize import resize_nearest_neighbor , resize_bilinear
 from horizontal_flip import horizontal_flip
 from sharpen import sharpen
 from edge_detection import sobel_edge_detection
+from blur import apply_gaussian_blur
 # Read img we will test on it
 test_img  = imageio.imread("/mnt/d/Workspace/DPS_project/test/test_img.jpg")
 print(f"Image loaded Succefully....")
@@ -167,10 +168,45 @@ def test_edge_detection(image: np.ndarray):
     plt.tight_layout()
     plt.show()
 
+
+def test_blur(image: np.ndarray, kernel_size: int = 5, sigma: float = 9.0):
+    """
+    Test Gaussian blur filter by comparing custom implementation to PIL's GaussianBlur.
+    """
+
+    # Custom Gaussian Blur
+    custom_blur = apply_gaussian_blur(image, kernel_size, sigma)
+
+    # PIL Gaussian Blur (convert to Image first)
+    pil_img = Image.fromarray(image)
+    pil_blur = pil_img.filter(ImageFilter.GaussianBlur(radius=sigma))
+    pil_blur_np = np.array(pil_blur)
+
+    # Plot results
+    plt.figure(figsize=(12, 4))
+    plt.subplot(1, 3, 1)
+    plt.imshow(image)
+    plt.title("Original")
+    plt.axis("off")
+
+    plt.subplot(1, 3, 2)
+    plt.imshow(custom_blur)
+    plt.title("Custom Gaussian Blur")
+    plt.axis("off")
+
+    plt.subplot(1, 3, 3)
+    plt.imshow(pil_blur_np)
+    plt.title("PIL Gaussian Blur")
+    plt.axis("off")
+
+    plt.tight_layout()
+    plt.show()
+
 if __name__ == "__main__":
     # test_grayscale(test_img)
     # test_resize(test_img,250,500)
     # test_horizontal_flip(test_img)
     # test_sharpen(test_img)
-    test_edge_detection(test_img)
+    # test_edge_detection(test_img)
+    test_blur(test_img)
 
