@@ -10,6 +10,7 @@ from horizontal_flip import horizontal_flip
 from sharpen import sharpen
 from edge_detection import sobel_edge_detection
 from blur import apply_gaussian_blur
+from audio_filters import fft_filter
 # Read img we will test on it
 test_img  = imageio.imread("/mnt/d/Workspace/DPS_project/test/test_img.jpg")
 print(f"Image loaded Succefully....")
@@ -202,11 +203,45 @@ def test_blur(image: np.ndarray, kernel_size: int = 5, sigma: float = 9.0):
     plt.tight_layout()
     plt.show()
 
+
+def test_fft_filter():
+    # Create a test signal: 500 Hz + 4000 Hz
+    sample_rate = 44100  # CD-quality
+    duration = 1.0       # seconds
+    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+
+    # Original signal: mix of 500 Hz (low) and 4000 Hz (high)
+    original_signal = 0.5 * np.sin(2 * np.pi * 500 * t) + 0.5 * np.sin(2 * np.pi * 4000 * t)
+    original_signal = original_signal.astype(np.float32)
+
+    # Apply FFT-based low-pass filter (cutoff = 1000 Hz)
+    filtered_signal = fft_filter(original_signal, sample_rate, cutoff_freq=1000, filter_type='low')
+
+    # Plotting
+    plt.figure(figsize=(14, 6))
+
+    plt.subplot(2, 1, 1)
+    plt.plot(t[:2000], original_signal[:2000])
+    plt.title("Original Signal (500Hz + 4000Hz)")
+    plt.xlabel("Time [s]")
+    plt.ylabel("Amplitude")
+
+    plt.subplot(2, 1, 2)
+    plt.plot(t[:2000], filtered_signal[:2000])
+    plt.title("Filtered Signal (Low-pass, cutoff = 1000Hz)")
+    plt.xlabel("Time [s]")
+    plt.ylabel("Amplitude")
+
+    plt.tight_layout()
+    plt.show()
+
+
 if __name__ == "__main__":
     # test_grayscale(test_img)
     # test_resize(test_img,250,500)
     # test_horizontal_flip(test_img)
     # test_sharpen(test_img)
     # test_edge_detection(test_img)
-    test_blur(test_img)
+    # test_blur(test_img)
+    test_fft_filter()
 

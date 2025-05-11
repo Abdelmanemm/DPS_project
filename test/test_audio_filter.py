@@ -1,4 +1,3 @@
-
 from audio_filters import load_audio, save_audio, fft_filter
 
 # Provide a path to your test WAV file (mono 16-bit PCM recommended)

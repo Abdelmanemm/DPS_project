@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from filters.grayscale import grayscale
 
-
 # Read img we will test on it
 test_img  = imageio.imread("/mnt/d/Workspace/DPS_project/test/test_img.jpg")
 print(f"Image loaded Succefully....")
