@@ -22,7 +22,7 @@ def sobel_edge_detection(image: np.ndarray) -> np.ndarray:
 
     image = image.astype(np.float32)
     height, width = image.shape
-    padded = np.pad(image, ((1, 1), (1, 1)), mode='reflect')  # better than 'constant'
+    padded = np.pad(image, ((1, 1), (1, 1)), mode='reflect')  
 
     edges = np.zeros((height, width), dtype=np.float32)
 
