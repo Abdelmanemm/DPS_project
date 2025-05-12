@@ -20,6 +20,8 @@ This folder contains all the custom image filter implementations written from sc
 
 ## Image Filters
 
+### Orginal Image
+![Description of the image](../test/test_img.jpg)
 ### 1. Grayscale Conversion
 ```python
 from grayscale import grayscale
