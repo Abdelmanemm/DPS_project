@@ -28,3 +28,10 @@ from grayscale import grayscale
 gray_img = grayscale(rgb_img)
 ```
 ![Description of the image](test_outputs/test_grayscale.jpg)
+
+### 2. Edge Detection
+```
+from edge_detection import sobel_edge_detection
+edges = sobel_edge_detection(img)
+```
+![Description of the image](test_outputs/test_edge_detection.jpg)
